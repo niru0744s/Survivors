@@ -1,11 +1,26 @@
+'use client';
+import { createContext } from 'react';
 import Image from "next/image";
+import Navbar from "../components/Navbar";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "../Pages/Home";
+import AboutUs from "../Pages/AboutUs";
 
-export default function Home() {
+const Page = () => {
+  const context = createContext({});
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <h1>Hello</h1>
-      </main>
-    </div>
+    <>
+      <Navbar />
+
+      {/* <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        {/* Add more routes as needed 
+      </Routes> */}
+    </>
   );
 }
+
+export default Page;
