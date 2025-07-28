@@ -1,6 +1,7 @@
 'use client';
-import React from 'react'
-import { Container, Grid, Typography, Link, IconButton, TextField, Button, Box } from '@mui/material';
+
+import React from 'react';
+import { Container, Typography, Link, IconButton, TextField, Button, Box } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -12,54 +13,72 @@ const paymentIcons = [
   'https://placehold.co/50x32/ffffff/000000?text=PAYPAL',
 ];
 
+const colors = {
+  deepPurple: '#5409da',
+  brightBlue: '#4e71ff',
+  mediumBlue: '#8dd8ff',
+  lightBlue: '#bbfbff',
+  darkerBg: '#1c034a', // A slightly darker shade of the deep purple for contrast
+  iconBg: '#3a069b', // A slightly lighter shade for icon backgrounds
+};
+
 export default function Footer() {
   return (
     <Box
       component="footer"
       sx={{
-        backgroundColor: '#1a1a1a', // Dark background for the main footer
+        backgroundColor: colors.darkerBg, // Use the new dark purple background
         color: 'white',
         py: 6,
-        borderTop: '4px solid #ff0000', // Red top border
+        m: 0,
+        borderTop: `4px solid ${colors.brightBlue}`, // Use the new bright blue for the border
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={5}>
-          {/* Column 1: Logo and Social Icons */}
-          <Grid item xs={12} md={3}>
+        {/* Main layout using Flexbox instead of Grid */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' }, // Stacks on mobile, row on desktop
+            gap: 5, // Replaces Grid spacing
+          }}
+        >
+          {/* Column 1: Logo and Social Icons (25% width on desktop) */}
+          <Box sx={{ width: { xs: '100%', md: '25%' } }}>
             <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', mb: 1 }}>
-              YOURSTORE
+              SURVIVORS
             </Typography>
-            <Typography variant="caption" display="block" sx={{ color: '#ff0000', mb: 2 }}>
-              ONLINE SHOPPING
+            <Typography variant="caption" display="block" sx={{ color: colors.mediumBlue, mb: 2 }}>
+              DAILY TOURNAMENTS
             </Typography>
             <Box>
-              <IconButton href="#" sx={{ color: 'white', backgroundColor: '#333', mr: 1, '&:hover': { backgroundColor: '#ff0000' } }}>
+              <IconButton href="#" sx={{ color: 'white', backgroundColor: colors.iconBg, mr: 1, '&:hover': { backgroundColor: colors.brightBlue } }}>
                 <FacebookIcon />
               </IconButton>
-              <IconButton href="#" sx={{ color: 'white', backgroundColor: '#333', mr: 1, '&:hover': { backgroundColor: '#ff0000' } }}>
+              <IconButton href="#" sx={{ color: 'white', backgroundColor: colors.iconBg, mr: 1, '&:hover': { backgroundColor: colors.brightBlue } }}>
                 <TwitterIcon />
               </IconButton>
-              <IconButton href="#" sx={{ color: 'white', backgroundColor: '#333', '&:hover': { backgroundColor: '#ff0000' } }}>
+              <IconButton href="#" sx={{ color: 'white', backgroundColor: colors.iconBg, '&:hover': { backgroundColor: colors.brightBlue } }}>
                 <InstagramIcon />
               </IconButton>
             </Box>
-          </Grid>
+          </Box>
 
-          {/* Column 2: Navigation and Contact Info */}
-          <Grid item xs={12} md={5}>
-            <Box sx={{ display: 'flex', mb: 2 }}>
-              {['HOME', 'BLOG', 'LOCATION', 'SALE', 'BLOG', 'CONTACT'].map((item,index) => (
+          {/* Column 2: Navigation and Contact Info (41.66% width on desktop) */}
+          <Box sx={{ width: { xs: '100%', md: '41.66%' } }}>
+            <Box sx={{ display: 'flex', mb: 2, flexWrap: 'wrap' }}>
+              {['HOME', 'BLOG', 'LOCATION', 'SALE', 'CONTACT'].map((item, index) => (
                 <Link
                   href="#"
-                   key={`${item}-${index}`}
+                  key={`${item}-${index}`}
                   variant="body2"
                   sx={{
                     color: 'white',
                     mr: 2,
+                    mb: 1,
                     textDecoration: 'none',
-                    '&:hover': { color: '#ff0000' },
-                    ...(item === 'HOME' && { color: '#ff0000' }) // Highlight 'HOME'
+                    '&:hover': { color: colors.lightBlue },
+                    ...(item === 'HOME' && { color: colors.mediumBlue }), // Highlight 'HOME'
                   }}
                 >
                   {item}
@@ -74,10 +93,10 @@ export default function Footer() {
               <br />
               Call Us Now: 0123-456-789, Email: yourmail@gmail.com
             </Typography>
-          </Grid>
+          </Box>
 
-          {/* Column 3: Newsletter and Payment Icons */}
-          <Grid item xs={12} md={4}>
+          {/* Column 3: Newsletter and Payment Icons (33.33% width on desktop) */}
+          <Box sx={{ width: { xs: '100%', md: '33.33%' } }}>
             <Typography variant="body2" sx={{ mb: 1 }}>
               SUBSCRIBE TO NEWS
             </Typography>
@@ -88,17 +107,17 @@ export default function Footer() {
                 size="small"
                 placeholder="E-mail here"
                 sx={{
-                  backgroundColor: '#333',
+                  backgroundColor: colors.iconBg,
                   flexGrow: 1,
                   '& .MuiOutlinedInput-root': {
                     '& fieldset': {
-                      borderColor: '#555',
+                      borderColor: colors.deepPurple,
                     },
                     '&:hover fieldset': {
-                      borderColor: '#ff0000',
+                      borderColor: colors.brightBlue,
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#ff0000',
+                      borderColor: colors.brightBlue,
                     },
                   },
                   '& .MuiInputBase-input': {
@@ -109,9 +128,9 @@ export default function Footer() {
               <Button
                 variant="contained"
                 sx={{
-                  backgroundColor: '#ff0000',
+                  backgroundColor: colors.brightBlue,
                   '&:hover': {
-                    backgroundColor: '#cc0000',
+                    backgroundColor: colors.mediumBlue,
                   },
                   boxShadow: 'none',
                   borderRadius: '0 4px 4px 0',
@@ -130,9 +149,9 @@ export default function Footer() {
                 />
               ))}
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
     </Box>
-  )
+  );
 }
