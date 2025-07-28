@@ -14,7 +14,7 @@
     height: 2px;
     top: 0;
     left: 0;
-    background-color: #000000;
+    background-color: #ffffff;
     transform: scaleX(0);
     transition: transform 0.3s ease;
     transform-origin: right;

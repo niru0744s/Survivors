@@ -3,7 +3,7 @@ import Link from 'next/link';
 // import 'tailwindcss'
 import Image from 'next/image';
 import './Navbar.css';
-import Logo from '../Public/Images/Logo_noBG.png';
+import Logo from '../Public/image/Logo_noBG.png';
 
 const Navbar = () => {
 
@@ -18,7 +18,7 @@ const Navbar = () => {
     ];
 
     return (
-        <header className='bg-gray-900 text-white p-4 sticky-top'>
+        <header className='bg-transparent text-white p-4 sticky-top'>
             <nav className='container mx-auto flex justify-between items-center'>
                 <Link href="/" className='flex items-center'>
                     <Image src={Logo} alt="Logo" width={70} height={70} className='mr-2' />
