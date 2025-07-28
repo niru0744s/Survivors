@@ -3,7 +3,7 @@ import Link from 'next/link';
 // import 'tailwindcss'
 import Image from 'next/image';
 import './Navbar.css';
-import Logo from '../Public/image/Logo_noBG.png';
+import Logo from '../Public/Images/Logo_noBG.png';
 
 const Navbar = () => {
 
