@@ -1,8 +1,13 @@
-import HeroSection from "./dashboard/HeroSection";
+import ChooseUs from "@/components/landing/ChooseUS";
+import ContactUs from "@/components/landing/ContactUs";
+import HeroSection from "@/components/landing/HeroSection";
+
 export default function Home() {
   return (
-    <div>
+    <>
         <HeroSection/>
-    </div>
+        <ChooseUs/>
+        <ContactUs/>
+    </>
   );
 }
