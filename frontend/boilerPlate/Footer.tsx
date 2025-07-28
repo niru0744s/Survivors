@@ -6,12 +6,13 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-const paymentIcons = [
-  'https://placehold.co/50x32/ffffff/000000?text=VISA',
-  'https://placehold.co/50x32/ffffff/000000?text=MC',
-  'https://placehold.co/50x32/ffffff/000000?text=AMEX',
-  'https://placehold.co/50x32/ffffff/000000?text=PAYPAL',
-];
+// Import the SVG icons as React components.
+// You will need to create these files in the specified path.
+import VisaIcon from '../public/svgs/VisaIcon';
+import MastercardIcon from '../public/svgs/MastercardIcon';
+import AmexIcon from '../public/svgs/AmexIcon';
+import PayPalIcon from '../public/svgs/PayPalIcon';
+
 
 const colors = {
   deepPurple: '#5409da',
@@ -20,6 +21,7 @@ const colors = {
   lightBlue: '#bbfbff',
   darkerBg: '#1c034a', // A slightly darker shade of the deep purple for contrast
   iconBg: '#3a069b', // A slightly lighter shade for icon backgrounds
+  iconColor: '#8d99ae', // A subtle grey for the payment icons
 };
 
 export default function Footer() {
@@ -27,23 +29,22 @@ export default function Footer() {
     <Box
       component="footer"
       sx={{
-        backgroundColor: colors.darkerBg, // Use the new dark purple background
+        backgroundColor: colors.darkerBg,
         color: 'white',
         py: 6,
         m: 0,
-        borderTop: `4px solid ${colors.brightBlue}`, // Use the new bright blue for the border
+        borderTop: `4px solid ${colors.brightBlue}`,
       }}
     >
       <Container maxWidth="lg">
-        {/* Main layout using Flexbox instead of Grid */}
         <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' }, // Stacks on mobile, row on desktop
-            gap: 5, // Replaces Grid spacing
+            flexDirection: { xs: 'column', md: 'row' },
+            gap: 5,
           }}
         >
-          {/* Column 1: Logo and Social Icons (25% width on desktop) */}
+          {/* Column 1: Logo and Social Icons */}
           <Box sx={{ width: { xs: '100%', md: '25%' } }}>
             <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', mb: 1 }}>
               SURVIVORS
@@ -64,7 +65,7 @@ export default function Footer() {
             </Box>
           </Box>
 
-          {/* Column 2: Navigation and Contact Info (41.66% width on desktop) */}
+          {/* Column 2: Navigation and Contact Info */}
           <Box sx={{ width: { xs: '100%', md: '41.66%' } }}>
             <Box sx={{ display: 'flex', mb: 2, flexWrap: 'wrap' }}>
               {['HOME', 'BLOG', 'LOCATION', 'SALE', 'CONTACT'].map((item, index) => (
@@ -78,7 +79,7 @@ export default function Footer() {
                     mb: 1,
                     textDecoration: 'none',
                     '&:hover': { color: colors.lightBlue },
-                    ...(item === 'HOME' && { color: colors.mediumBlue }), // Highlight 'HOME'
+                    ...(item === 'HOME' && { color: colors.mediumBlue }),
                   }}
                 >
                   {item}
@@ -95,7 +96,7 @@ export default function Footer() {
             </Typography>
           </Box>
 
-          {/* Column 3: Newsletter and Payment Icons (33.33% width on desktop) */}
+          {/* Column 3: Newsletter and Payment Icons */}
           <Box sx={{ width: { xs: '100%', md: '33.33%' } }}>
             <Typography variant="body2" sx={{ mb: 1 }}>
               SUBSCRIBE TO NEWS
@@ -139,15 +140,13 @@ export default function Footer() {
                 &gt;
               </Button>
             </Box>
-            <Box>
-              {paymentIcons.map((src, index) => (
-                <img
-                  key={index}
-                  src={src}
-                  alt={`Payment method ${index + 1}`}
-                  style={{ marginRight: '8px', height: '32px', borderRadius: '4px' }}
-                />
-              ))}
+            
+            {/* Using the imported SVG components */}
+            <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 2.5, color: colors.iconColor, '& svg': { transition: 'color 0.3s', '&:hover': { color: 'white' } } }}>
+              <VisaIcon />
+              <MastercardIcon />
+              <AmexIcon />
+              <PayPalIcon />
             </Box>
           </Box>
         </Box>
