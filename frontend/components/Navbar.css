@@ -1,7 +1,8 @@
-.nav-links {
+/* .nav-links {
     gap: 0 15px !important;
     margin-right: 20px;
-}
+    display: flex;
+} */
 .nav-links .nav-link {
     overflow: hidden;
 }
@@ -13,7 +14,7 @@
     height: 2px;
     top: 0;
     left: 0;
-    background-color: #fff;
+    background-color: #000000;
     transform: scaleX(0);
     transition: transform 0.3s ease;
     transform-origin: right;
