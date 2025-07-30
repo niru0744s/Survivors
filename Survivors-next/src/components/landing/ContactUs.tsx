@@ -41,7 +41,7 @@ const InfoItem = ({ icon, title, children }:InfoItemProps) => (
 
 export default function ContactUs() {
   return (
-    <Box sx={{ backgroundColor: colors.darkerBg, color: 'white', py: 10 }}>
+    <Box sx={{ backgroundColor: colors.darkerBg, color: 'white', py: 10 }} id="contact">
       <Container maxWidth="lg">
         <Box 
           sx={{ 

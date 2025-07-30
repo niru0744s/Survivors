@@ -1,0 +1,103 @@
+/* components/landing/HeroSection.css */
+
+.hero-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: white;
+    /* INSTRUCTION: Place your background image in the /public/image/ folder 
+      and name it 'hero-bg.jpg' for this to work.
+    */
+    background-image: url('/image/heroBG.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 80px; /* Offset for the navbar height */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(16, 1, 43, 0.6); /* Dark purple overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+.hero-title {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.hero-arrow {
+    color: #4e71ff; /* Your brand's bright blue */
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-bottom: 0.5rem;
+}
+
+.hero-presenter {
+    position: absolute;
+    bottom: -10vh; /* Position it lower on the screen */
+    left: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.presenter-name {
+    font-weight: bold;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 900px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+    .hero-subtitle {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-section {
+        text-align: center;
+    }
+    .hero-content {
+        text-align: center;
+    }
+    .hero-subtitle {
+        align-items: center;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+    .hero-presenter {
+       left: 50%;
+       transform: translateX(-50%);
+       width: 100%;
+    }
+}
