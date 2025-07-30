@@ -16,7 +16,6 @@ import {
     useMediaQuery 
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-// import Logo from '../Public/image/Logo_noBG.png';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Navbar: React.FC = () => {
@@ -56,7 +55,7 @@ const Navbar: React.FC = () => {
             sx={{ flexGrow: 1 }}
             >
                 <img 
-                src="image/Logo_noBG.png" 
+                src="../Public/image/Logo_noBG.png" 
                 alt='logo' 
                 style={{ height: 40 }} 
                 />
