@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
             sx={{ flexGrow: 1 }}
             >
                 <img 
-                src="../Public/image/Logo_noBG.png" 
+                src="image/Logo_noBG.png" 
                 alt='logo' 
                 style={{ height: 40 }} 
                 />
