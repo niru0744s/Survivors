@@ -5,6 +5,7 @@ import { Container, Typography, Button, Box, Divider } from '@mui/material';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import "./ChooseUS.css";
 
 // Your new color palette
 const colors = {
@@ -41,39 +42,39 @@ export default function WhyChooseUs() {
   return (
     <Box sx={{ backgroundColor: colors.darkerBg, color: 'white', py: 10 }}>
       <Container maxWidth="lg">
-        {/* Main layout using Flexbox instead of Grid */}
         <Box 
           sx={{ 
             display: 'flex', 
-            flexDirection: { xs: 'column', md: 'row' }, // Stacks on mobile, row on desktop
+            flexDirection: { xs: 'column', md: 'row' },
             alignItems: 'center',
-            gap: 6 // This replaces the Grid spacing
+            gap: 6
           }}
         >
           {/* Column 1: Character Image */}
-          <Box sx={{ width: { xs: '100%', md: '41.66%' } }}> {/* 5/12 width */}
+          <Box sx={{ width: { xs: '100%', md: '41.66%' } }}>
             <Box
               sx={{
                 width: '100%',
                 height: { xs: 300, md: 450 },
                 borderRadius: 2,
-                overflow: 'hidden',
                 boxShadow: `0 10px 40px ${colors.brightBlue}40`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                position: 'relative', // Needed for the pseudo-elements
               }}
             >
-              <img
-                src="image/character.png" 
-                alt="Tournament Character in a battlefield"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
+              {/* 2. Added the new structure for the glowing effect */}
+              <div className="image-container">
+                <span></span> {/* This is the inner mask */}
+                <img
+                  src="/image/character.png" 
+                  alt="Tournament Character in a battlefield"
+                  className="character-image"
+                />
+              </div>
             </Box>
           </Box>
 
           {/* Column 2: Text Content */}
-          <Box sx={{ width: { xs: '100%', md: '58.34%' } }}> {/* 7/12 width */}
+          <Box sx={{ width: { xs: '100%', md: '58.34%' } }}>
             <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold', mb: 1 }}>
               WHY CHOOSE SURVIVORS
             </Typography>

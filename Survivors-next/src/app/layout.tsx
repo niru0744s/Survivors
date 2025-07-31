@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "../../boilerPlate/Header";
 import Footer from "../../boilerPlate/Footer"; 
 import ThemeRegistry from '@/ThemeRegistry';
+import CursorHandler from "@/components/Cursorhandler";
 import './globals.css'
 export const metadata: Metadata = {
   title: "Survivors",
@@ -13,9 +14,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <body>
+        <CursorHandler /> 
         <ThemeRegistry>
          
           <Header />

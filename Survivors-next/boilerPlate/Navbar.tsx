@@ -1,155 +1,96 @@
 'use client';
 
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import ToolBar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import { 
-    Box, 
-    Drawer, 
-    List, 
-    ListItem, 
-    ListItemButton, 
-    ListItemText, 
-    useMediaQuery 
-} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import "./Navbar.css"; 
 
-const Navbar: React.FC = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent
-) => {
-    if (event.type === 'keydowm' && (
-        (event as React.KeyboardEvent).key === 'Tab' || 
-        (event as React.KeyboardEvent).key === 'shift'
-    )) {
-        return;
-    }
+  const closeMenu = () => setIsOpen(false);
 
-    setDrawerOpen(open);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
-  const Links = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'About us', path: '/aboutUs' },
-    { name: 'Gaming', path: '/gaming' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact us', path: '/contactUs' },
-    { name: 'Log in', path: '/login' }
-  ]
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // The text to be animated
+  const glowingText = "READY TO SURVIVE ?";
 
   return (
-    <AppBar 
-    position='static'
-    >
-        <ToolBar>
-            <Box 
-            sx={{ flexGrow: 1 }}
-            >
-                <img 
-                src="../Public/image/Logo_noBG.png" 
-                alt='logo' 
-                style={{ height: 40 }} 
+    <>
+      {isOpen && <div className="overlay" onClick={closeMenu}></div>}
+
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="navbar-container">
+          <div className="navbar-logo">
+            <Link href="/" onClick={closeMenu}>
+              <Image 
+                src="/image/Logo_noBG.png" 
+                alt="Survivors Logo" 
+                width={50} 
+                height={50} 
+                style={{ objectFit: 'contain' }}
+              />
+              {/* FIX: Replaced the old text with the new animated text structure */}
+              <div className="glowing-text">
+                {glowingText.split('').map((char, index) => (
+                  <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          </div>
+
+          <div className="navbar-links-desktop">
+            <Link href="/#home">Home</Link>
+            <Link href="/#about">About</Link>
+            <Link href="/#contact">Contact</Link>
+            <Link href="/#login">Login</Link>
+          </div>
+
+          <div className="navbar-toggle" onClick={() => setIsOpen(!isOpen)}>
+            <div className={`bar ${isOpen ? 'open' : ''}`}></div>
+            <div className={`bar ${isOpen ? 'open' : ''}`}></div>
+            <div className={`bar ${isOpen ? 'open' : ''}`}></div>
+          </div>
+        </div>
+      </nav>
+
+      <div className={`mobile-menu ${isOpen ? "active" : ""}`}>
+        <div className="mobile-menu-close" onClick={closeMenu}>
+          &times;
+        </div>
+        <div className="mobile-menu-header">
+            <div className="navbar-logo">
+                <Link href="/" onClick={closeMenu}>
+                <Image 
+                    src="/image/Logo_noBG.png" 
+                    alt="Survivors Logo" 
+                    width={50} 
+                    height={50} 
                 />
-            </Box>
-
-            {isMobile ? (
-                <>
-                    <IconButton
-                      edge='end'
-                      color='inherit'
-                      aria-label='menu'
-                      onClick={toggleDrawer(true)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-
-                    <Drawer
-                      anchor='right'
-                      open={drawerOpen}
-                      onClose={toggleDrawer(false)}
-                    >
-                        <Box
-                          sx={{ width: 200}}
-                          role='presentation'
-                          onClick={toggleDrawer(false)}
-                          onKeyDown={toggleDrawer(false)}
-                        >
-                            <Box
-                              sx={{
-                                display: 'flex',
-                                justifyContent: 'flex-end',
-                                p: 1
-                              }}
-                            >
-                                <IconButton
-                                  onClick={toggleDrawer(false)}
-                                >
-                                    <CloseIcon />
-                                </IconButton>
-                            </Box>
-                            <List>
-                                {Links.map((Link) => (
-                                    <ListItem
-                                      key={Link.name}
-                                      disablePadding
-                                    >
-                                        <ListItemButton
-                                          component='a'
-                                          href={Link.path}
-                                        >
-                                            <ListItemText 
-                                              primary={Link.name} 
-                                            />
-                                        </ListItemButton>
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </Box>
-                    </Drawer>
-                </>
-            ) : (
-                <>
-                    <Box
-                      sx={{
-                        display: 'flex'
-                      }}
-                    >
-                        {Links.map((Link) => (
-                            <ListItem
-                              key={Link.name}
-                              disablePadding
-                              sx={{
-                                // display: 'inline-block',
-                                ml: 2
-                              }}
-                              className='nav-liks'
-                            >
-                                <ListItemButton
-                                  component='a'
-                                  href={Link.path}
-                                  className='nav-link'
-                                >
-                                    <ListItemText 
-                                      primary={Link.name}
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        ))}
-                    </Box>
-                </>
-            )}
-        </ToolBar>
-    </AppBar>
-  )
-}
+                </Link>
+            </div>
+        </div>
+        <Link href="/" onClick={closeMenu}>Home</Link>
+        <Link href="/#about" onClick={closeMenu}>About</Link>
+        <Link href="/#tournaments" onClick={closeMenu}>Tournaments</Link>
+        <Link href="/#contact" onClick={closeMenu}>Contact</Link>
+      </div>
+    </>
+  );
+};
 
 export default Navbar;
