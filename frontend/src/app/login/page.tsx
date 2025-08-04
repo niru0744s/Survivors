@@ -3,7 +3,7 @@ import React from 'react'
 export default function login() {
   return (
     <div>
-      Login route
+      new Login route
     </div>
   )
 }
